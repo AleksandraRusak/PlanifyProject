@@ -61,7 +61,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_email"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_password"
@@ -86,7 +86,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_password" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_password"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_confirmPassword"
@@ -115,7 +115,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_register"
+            android:id="@+id/btnRegister"
             android:layout_width="320dp"
             android:layout_height="48dp"
             android:layout_marginBottom="60dp"
@@ -137,10 +137,10 @@
             android:text="Already have an account?"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+            app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_signIn"
+            android:id="@+id/tvSignIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
@@ -150,7 +150,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_haveAccount"
-            app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+            app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
