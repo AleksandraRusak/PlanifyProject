@@ -9,7 +9,6 @@ import com.example.planify.R
 
 class SignInFragment : Fragment() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
