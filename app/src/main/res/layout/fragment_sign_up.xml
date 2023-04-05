@@ -56,12 +56,13 @@
             android:layout_width="320dp"
             android:layout_height="48dp"
             android:background="@color/white"
-            android:hint=" aleksandra_rusak@sti.com"
+            android:hint="aleksandra_rusak@sti.com"
             android:inputType="textEmailAddress"
+            android:paddingStart="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_email"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_password"
@@ -76,43 +77,80 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_email" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_password"
+        <!-- Text Input Password -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiLayout1"
             android:layout_width="320dp"
             android:layout_height="48dp"
             android:background="@color/white"
-            android:hint=" ********"
-            android:inputType="numberPassword"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_password"/>
+            app:passwordToggleEnabled="true"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="362dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_password"
+                android:layout_width="320dp"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:hint="********"
+                android:inputType="textPassword"
+                android:paddingStart="10dp"
+                android:paddingTop="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.505"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="362dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_confirmPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:text="Confirm Password"
             android:textColor="@color/black"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.153"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_password" />
+            app:layout_constraintTop_toBottomOf="@+id/tiLayout1" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_confirmPassword"
+        <!-- Text Input ConfirmPassword -->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tiLayout2"
             android:layout_width="320dp"
             android:layout_height="48dp"
             android:background="@color/white"
-            android:hint=" ********"
-            android:inputType="numberPassword"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:hintEnabled="false"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_confirmPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_confirmPassword"
+            app:passwordToggleEnabled="true"
+            tools:ignore="MissingConstraints">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_confirmPassword"
+                android:layout_width="320dp"
+                android:layout_height="48dp"
+                android:background="@color/white"
+                android:hint="********"
+                android:inputType="textPassword"
+                android:paddingStart="10dp"
+                android:paddingTop="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnRegister"
@@ -151,6 +189,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_haveAccount"
             app:layout_constraintTop_toBottomOf="@+id/btnRegister" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
