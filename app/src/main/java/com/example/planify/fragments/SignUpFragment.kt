@@ -50,10 +50,11 @@ class SignUpFragment : Fragment() {
             if (email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()) {
                 if (password == confirmPassword) {
 
+                    Toast.makeText(context, "Registered Successfully", Toast.LENGTH_SHORT).show()
                     registerUser(email, password)
 
                 } else {
-                    Toast.makeText(context, "Password is not match", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Password does not match", Toast.LENGTH_SHORT).show()
                 }
             } else
                 Toast.makeText(context, "Empty fields are not allowed", Toast.LENGTH_SHORT).show()
