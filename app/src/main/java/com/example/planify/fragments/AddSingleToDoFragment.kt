@@ -1,13 +1,11 @@
 package com.example.planify.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.example.planify.R
 import com.example.planify.databinding.FragmentAddSingleToDoBinding
 import com.google.android.material.textfield.TextInputEditText
 
@@ -47,6 +45,11 @@ class AddSingleToDoFragment : DialogFragment() {
                 Toast.makeText(context, "Please type some task", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.todoClose.setOnClickListener {
+            dismiss()
+        }
+
     }
 
     interface DialogNextBtnClickListeners{

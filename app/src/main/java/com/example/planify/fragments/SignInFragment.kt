@@ -10,7 +10,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.planify.R
 import com.example.planify.databinding.FragmentSignInBinding
-import com.example.planify.databinding.FragmentSignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class SignInFragment : Fragment() {
@@ -19,15 +18,11 @@ class SignInFragment : Fragment() {
     private lateinit var navControl: NavController
     private lateinit var binding: FragmentSignInBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentSignInBinding.inflate(inflater, container, false)
         return binding.root

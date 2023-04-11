@@ -5,11 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.example.planify.R
 import com.example.planify.databinding.FragmentHomeBinding
-import com.example.planify.databinding.FragmentSignUpBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -26,7 +25,7 @@ class HomeFragment : Fragment(), AddSingleToDoFragment.DialogNextBtnClickListene
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
@@ -58,10 +57,21 @@ class HomeFragment : Fragment(), AddSingleToDoFragment.DialogNextBtnClickListene
         navControl = Navigation.findNavController(view)
         auth = FirebaseAuth.getInstance()
         databaseRef = FirebaseDatabase.getInstance().reference
+            .child("Tasks")
+            .child(auth.currentUser?.uid.toString())
     }
 
     override fun onSaveTask(todo: String, todoEt: TextInputEditText) {
-        TODO("Not yet implemented")
+
+        databaseRef.push().setValue(todo).addOnCompleteListener {
+            if (it.isSuccessful){
+                Toast.makeText(context, "Todo saved successfully", Toast.LENGTH_SHORT).show()
+                todoEt.text = null
+            }else{
+                Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
+            }
+            singleToDoFragment.dismiss()
+        }
     }
 
 }
