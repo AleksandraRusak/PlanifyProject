@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.example.planify.ToDoData
 import com.example.planify.databinding.FragmentAddSingleToDoBinding
 import com.google.android.material.textfield.TextInputEditText
 
@@ -13,12 +14,24 @@ import com.google.android.material.textfield.TextInputEditText
 class AddSingleToDoFragment : DialogFragment() {
 
     private lateinit var binding: FragmentAddSingleToDoBinding
-    private lateinit var listener: DialogNextBtnClickListeners
+    private var listener: DialogNextBtnClickListeners? = null
+    private var toDoData: ToDoData? = null
 
     fun setListener(listener : DialogNextBtnClickListeners){
         this.listener = listener
     }
 
+    companion object {
+        const val TAG = "DialogFragment"
+        @JvmStatic
+        fun newInstance(taskId: String, task: String) =
+            AddSingleToDoFragment().apply {
+                arguments = Bundle().apply {
+                    putString("taskId", taskId)
+                    putString("task", task)
+                }
+            }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,28 +45,35 @@ class AddSingleToDoFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        registerEvents()
-    }
+        if (arguments != null){
 
-    private fun registerEvents(){
+            toDoData = ToDoData(
+                arguments?.getString("taskId").toString() ,
+                arguments?.getString("task").toString())
+            binding.todoEt.setText(toDoData?.task)
+        }
+
         binding.todoNextBtn.setOnClickListener {
-           val todoTask = binding.todoEt.text.toString()
-            if (todoTask.isNotEmpty()){
-                listener.onSaveTask(todoTask, binding.todoEt)
+            val todoTask = binding.todoEt.text.toString()
+            if (todoTask.isNotEmpty()) {
+                if (toDoData == null) {
+                    listener?.onSaveTask(todoTask, binding.todoEt)
+                } else {
+                    toDoData!!.task = todoTask
+                    listener?.updateTask(toDoData!!, binding.todoEt)
+                }
 
-            }else{
-                Toast.makeText(context, "Please type some task", Toast.LENGTH_SHORT).show()
+
+                binding.todoClose.setOnClickListener {
+                    dismiss()
+                }
             }
         }
-
-        binding.todoClose.setOnClickListener {
-            dismiss()
-        }
-
     }
 
     interface DialogNextBtnClickListeners{
         fun onSaveTask(todo: String, todoEt : TextInputEditText)
+        fun updateTask(toDoData: ToDoData , todoEdit:TextInputEditText)
     }
 
 }

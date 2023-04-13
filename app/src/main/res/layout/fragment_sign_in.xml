@@ -40,7 +40,7 @@
 
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView"
+            android:id="@+id/ivLogin"
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_marginTop="15dp"
@@ -73,10 +73,10 @@
             android:background="@color/white"
             android:hint="aleksandra_rusak@sti.com"
             android:inputType="textEmailAddress"
+            android:paddingStart="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            android:paddingStart="10dp"
             app:layout_constraintTop_toBottomOf="@+id/tv_email" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -104,8 +104,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_password"
             app:passwordToggleEnabled="true"
-            tools:layout_editor_absoluteY="527dp"
             tools:ignore="MissingConstraints">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -123,14 +123,14 @@
             android:id="@+id/btnLogin"
             android:layout_width="320dp"
             android:layout_height="48dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="63dp"
             android:backgroundTint="@color/blue"
             android:text="Login"
             android:textSize="17dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -148,6 +148,7 @@
             android:id="@+id/tvSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="7dp"
             android:layout_marginTop="3dp"
             android:layout_marginEnd="96dp"
             android:text="Sign Up"

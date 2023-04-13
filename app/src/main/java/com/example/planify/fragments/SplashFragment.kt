@@ -38,6 +38,7 @@ class SplashFragment : Fragment() {
 
         val isLogin: Boolean = auth.currentUser != null
 
+        // after 3 seconds, navigate from SplashFragment to if logged in HOME FRAG or if not logged in to SING IN FRAG
         val handler = Handler(Looper.myLooper()!!)
         handler.postDelayed({
 
@@ -46,7 +47,7 @@ class SplashFragment : Fragment() {
             else
                 navControl.navigate(R.id.action_splashFragment2_to_signInFragment2)
 
-        }, 2000)
+        }, 3000)
     }
 
     private fun init(view: View) {
