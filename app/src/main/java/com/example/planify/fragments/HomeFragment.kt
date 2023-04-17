@@ -6,18 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.planify.ListAdapter
-import com.example.planify.ToDoData
+import com.example.planify.roomDB.Task
 import com.example.planify.databinding.FragmentHomeBinding
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
-class HomeFragment : Fragment(), AddSingleToDoFragment.DialogNextBtnClickListeners,
-    ListAdapter.ListAdapterInterface {
+class HomeFragment : Fragment(), SearchView.OnQueryTextListener{
 
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseRef: DatabaseReference
@@ -25,7 +25,7 @@ class HomeFragment : Fragment(), AddSingleToDoFragment.DialogNextBtnClickListene
     private lateinit var binding: FragmentHomeBinding
     private lateinit var singleToDoFragment : AddSingleToDoFragment
     private lateinit var adapter: ListAdapter
-    private lateinit var mList: MutableList<ToDoData>
+    private lateinit var mList: MutableList<Task>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -120,7 +120,7 @@ class HomeFragment : Fragment(), AddSingleToDoFragment.DialogNextBtnClickListene
 
 
 
-    override fun onDeleteItemClicked(toDoData: ToDoData, position: Int) {
+    override fun onDeleteItemClicked(toDoData: Task, position: Int) {
         databaseRef.child(toDoData.taskId).removeValue().addOnCompleteListener {
             if (it.isSuccessful){
                 Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show()

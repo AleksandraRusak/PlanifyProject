@@ -1,25 +1,18 @@
 package com.example.planify
 
-import android.util.Log
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.planify.databinding.TodoItemBinding
+import com.example.planify.fragments.HomeFragmentDirections
+import com.example.planify.roomDB.Task
 
-class ListAdapter(private val taskList: MutableList<ToDoData>)  : RecyclerView.Adapter<ListAdapter.ToDoViewHolder>() {
 
-    class ToDoViewHolder(val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root)
+class ListAdapter : RecyclerView.Adapter<ListAdapter.ToDoViewHolder>() {
 
-    private val TAG = "TaskAdapter"
-    private var listener:ListAdapterInterface? = null
-    fun setListener (listener:ListAdapterInterface){
-        this.listener = listener
-    }
-
-    interface ListAdapterInterface {
-        fun onDeleteItemClicked(toDoData: ToDoData, position : Int)
-        fun onEditItemClicked(toDoData: ToDoData , position: Int)
-    }
+    private var taskList= emptyList<Task>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder {
         val binding = TodoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -31,21 +24,31 @@ class ListAdapter(private val taskList: MutableList<ToDoData>)  : RecyclerView.A
     }
 
     override fun onBindViewHolder(holder: ToDoViewHolder, position: Int) {
+        val currentItem = taskList[position]
         with(holder) {
-            with(taskList[position]) {
 
-                binding.todoTask.text = this.task
+                binding.todoTask.text = currentItem.task
 
-                Log.d(TAG, "onBindViewHolder: " + this)
-                binding.editTask.setOnClickListener {
-                    listener?.onEditItemClicked(this, position)
-                }
+                binding.itemTaskLayout.setOnLongClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToUpdateSingleToDoFragment(currentItem)
+                holder.itemView.findNavController().navigate(action)
+                return@setOnLongClickListener true
 
-                binding.deleteTask.setOnClickListener {
-                    listener?.onDeleteItemClicked(this, position)
                 }
             }
         }
+
+
+inner class ToDoViewHolder(val binding: TodoItemBinding) : RecyclerView.ViewHolder(binding.root)
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(task: List<Task>) {
+        this.taskList = task
+        notifyDataSetChanged()
+    }
+
+    fun getNoteAt(position: Int) : Task {
+        return taskList[position]
     }
 
 }
