@@ -49,11 +49,14 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener{
     private fun registerEvents(){
         binding.btnAddToDo.setOnClickListener {
             singleToDoFragment = AddSingleToDoFragment()
-            singleToDoFragment.setListener(this)
-            singleToDoFragment.show(
+            //singleToDoFragment.setListener(this)
+           /* singleToDoFragment.show(
                 childFragmentManager,
                 "AddSingleToDoFragment"
             )
+
+            */
+
 
         }
 
@@ -69,23 +72,23 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener{
         binding.mainRecyclerView.setHasFixedSize(true)
         binding.mainRecyclerView.layoutManager = LinearLayoutManager(context)
         mList = mutableListOf()
-        adapter = ListAdapter(mList)
-        adapter.setListener(this)
+       // adapter = ListAdapter(mList)
+       // adapter.setListener(this)
         binding.mainRecyclerView.adapter = adapter
 
     }
 
-    private fun getDataFromFirebase(){
-        databaseRef.addValueEventListener(object :ValueEventListener{
+    private fun getDataFromFirebase() {
+        databaseRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-               mList.clear()
-                for (taskSnapshot in snapshot.children){
-                    val todoTask = taskSnapshot.key?.let{
-                        ToDoData(it , taskSnapshot.value.toString())
+                mList.clear()
+                for (taskSnapshot in snapshot.children) {
+                    val todoTask = taskSnapshot.key?.let {
+                        // ToDoData(it , taskSnapshot.value.toString())
                     }
 
-                    if (todoTask != null){
-                        mList.add(todoTask)
+                    if (todoTask != null) {
+                        // mList.add(todoTask)
                     }
                 }
                 adapter.notifyDataSetChanged()
@@ -99,7 +102,16 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener{
         })
     }
 
-    override fun onSaveTask(todo: String, todoEt: TextInputEditText) {
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        TODO("Not yet implemented")
+    }
+}
+
+    /*override fun onSaveTask(todo: String, todoEt: TextInputEditText) {
 
         databaseRef.push().setValue(todo).addOnCompleteListener {
             if (it.isSuccessful){
@@ -108,7 +120,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener{
             }else{
                 Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
             }
-            singleToDoFragment.dismiss()
+            //singleToDoFragment.dismiss()
         }
 
     }
@@ -137,3 +149,5 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener{
     }
 
 }
+
+     */
