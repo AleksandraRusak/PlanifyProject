@@ -26,8 +26,4 @@ class TaskRepository(private val taskDao: TaskDao) {
         taskDao.deleteAllTask()
     }
 
-    @WorkerThread
-    fun searchDatabase(searchQuery: String): LiveData<List<Task>> {
-        return taskDao.searchDatabase(searchQuery)
-    }
 }

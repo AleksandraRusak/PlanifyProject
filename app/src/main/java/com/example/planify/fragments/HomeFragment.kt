@@ -1,19 +1,20 @@
 package com.example.planify.fragments
 
+import android.app.AlertDialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.planify.ListAdapter
-import com.example.planify.roomDB.Task
 import com.example.planify.databinding.FragmentHomeBinding
-import com.google.android.material.textfield.TextInputEditText
+import com.example.planify.roomDB.Task
+import com.example.planify.view_model.TaskViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -22,132 +23,78 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener{
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseRef: DatabaseReference
     private lateinit var navControl: NavController
-    private lateinit var binding: FragmentHomeBinding
-    private lateinit var singleToDoFragment : AddSingleToDoFragment
-    private lateinit var adapter: ListAdapter
-    private lateinit var mList: MutableList<Task>
+
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var taskViewModel: TaskViewModel
+
+
+    // for the searchView
+    //private val adapter: ListAdapter by lazy { ListAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding.apply {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+            // recyclerView
+            //this adapter is for retrieving the recyclerView
+            val adapter = ListAdapter()
+            //val recyclerView = recyclerView
+            //recyclerView.adapter = adapter
+           //recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+            // taskViewModel to read data from database
+            taskViewModel = ViewModelProvider(requireActivity())[TaskViewModel::class.java]
+            taskViewModel.readAllData.observe(viewLifecycleOwner) { task ->
+                adapter.setData(task)
+            }
 
-        init(view)
-        getDataFromFirebase()
-        registerEvents()
+            // add buttons
 
-    }
+            btnAddToDo.setOnClickListener {
+                //findNavController().navigate(R.id.action_homeFragment_to_addSingleToDo)
+            }
 
-    private fun registerEvents(){
-        binding.btnAddToDo.setOnClickListener {
-            singleToDoFragment = AddSingleToDoFragment()
-            //singleToDoFragment.setListener(this)
-           /* singleToDoFragment.show(
-                childFragmentManager,
-                "AddSingleToDoFragment"
-            )
-
-            */
-
-
+            // delete all tasks button
+            btnDeleteAllToDo.setOnClickListener {
+                deleteAllTasks()
+            }
         }
+            return binding.root
 
     }
 
-    private fun init(view: View) {
-        navControl = Navigation.findNavController(view)
-        auth = FirebaseAuth.getInstance()
-        databaseRef = FirebaseDatabase.getInstance().reference
-            .child("Tasks")
-            .child(auth.currentUser?.uid.toString())
-
-        binding.mainRecyclerView.setHasFixedSize(true)
-        binding.mainRecyclerView.layoutManager = LinearLayoutManager(context)
-        mList = mutableListOf()
-       // adapter = ListAdapter(mList)
-       // adapter.setListener(this)
-        binding.mainRecyclerView.adapter = adapter
-
-    }
-
-    private fun getDataFromFirebase() {
-        databaseRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                mList.clear()
-                for (taskSnapshot in snapshot.children) {
-                    val todoTask = taskSnapshot.key?.let {
-                        // ToDoData(it , taskSnapshot.value.toString())
-                    }
-
-                    if (todoTask != null) {
-                        // mList.add(todoTask)
-                    }
-                }
-                adapter.notifyDataSetChanged()
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
-
-            }
-
-        })
-    }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        TODO("Not yet implemented")
+        return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        TODO("Not yet implemented")
-    }
-}
-
-    /*override fun onSaveTask(todo: String, todoEt: TextInputEditText) {
-
-        databaseRef.push().setValue(todo).addOnCompleteListener {
-            if (it.isSuccessful){
-                Toast.makeText(context, "Todo saved successfully", Toast.LENGTH_SHORT).show()
-                todoEt.text = null
-            }else{
-                Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
-            }
-            //singleToDoFragment.dismiss()
+        return true
         }
 
-    }
-
-    override fun updateTask(toDoData: ToDoData, todoEdit: TextInputEditText) {
-        TODO("Not yet implemented")
-    }
-
-
-
-
-    override fun onDeleteItemClicked(toDoData: Task, position: Int) {
-        databaseRef.child(toDoData.taskId).removeValue().addOnCompleteListener {
-            if (it.isSuccessful){
-                Toast.makeText(context, "Deleted successfully", Toast.LENGTH_SHORT).show()
-
-            }else{ Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
-
-
+        // delete all tasks
+        private fun deleteAllTasks() {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setPositiveButton("Delete") { _, _ ->
+                taskViewModel.deleteAllTasks()
             }
+            builder.setNegativeButton("Cancel") { _, _ -> }
+            builder.setTitle( "Delete All Tasks?")
+            builder.create().show()
         }
-    }
 
-    override fun onEditItemClicked(toDoData: ToDoData, position: Int) {
-        TODO("Not yet implemented")
-    }
-
+        override fun onDestroy() {
+            super.onDestroy()
+            _binding = null
+        }
 }
 
-     */
+
+
+

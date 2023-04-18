@@ -22,7 +22,4 @@ interface TaskDao {
     @Query("SELECT * FROM task_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<Task>>
 
-    @Query("SELECT * FROM task_table WHERE task LIKE :searchQuery OR title LIKE :searchQuery")
-    fun searchDatabase(searchQuery: String): LiveData<List<Task>>
-
 }

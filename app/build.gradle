@@ -59,10 +59,11 @@ dependencies {
 
 
     // Firebase
-    implementation'com.google.firebase:firebase-bom:31.4.0'
+    implementation'com.google.firebase:firebase-bom:31.5.0'
     implementation platform('com.google.firebase:firebase-bom:31.3.0')
-    implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
-    implementation 'com.google.firebase:firebase-auth-ktx:21.2.0'
+    implementation 'com.google.firebase:firebase-database-ktx:20.2.0'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.3.0'
+    implementation 'com.google.firebase:firebase-firestore-ktx:24.5.0'
 
 
     // Room
