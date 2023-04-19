@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.planify.roomDB.Task
+import com.example.planify.Task
 import com.example.planify.roomDB.TaskRepository
 import com.example.planify.roomDB.TaskDatabase
 import kotlinx.coroutines.Dispatchers

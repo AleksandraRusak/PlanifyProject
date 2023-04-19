@@ -7,7 +7,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.planify.databinding.TodoItemBinding
 import com.example.planify.fragments.HomeFragmentDirections
-import com.example.planify.roomDB.Task
 
 
 class ListAdapter : RecyclerView.Adapter<ListAdapter.ToDoViewHolder>() {

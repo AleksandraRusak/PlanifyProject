@@ -1,4 +1,4 @@
-package com.example.planify.roomDB
+package com.example.planify
 
 import android.os.Parcelable
 import androidx.room.Entity

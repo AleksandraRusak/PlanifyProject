@@ -1,9 +1,7 @@
 package com.example.planify.roomDB
 
-import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import com.example.planify.roomDB.Task
-import com.example.planify.roomDB.TaskDao
+import com.example.planify.Task
 
 
 class TaskRepository(private val taskDao: TaskDao) {

@@ -3,6 +3,7 @@ package com.example.planify.user
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/*
 @Entity
 
 data class User(
@@ -14,3 +15,5 @@ data class User(
     var id: Long? = null
 
 }
+
+ */

@@ -1,10 +1,11 @@
 package com.example.planify.user
 
 
-import com.example.planify.AppDatabase
+//import com.example.planify.AppDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 
+/*
 class UserRepository (private val appDatabase : AppDatabase, private val
 coroutineScope : CoroutineScope
 ) {
@@ -37,3 +38,5 @@ coroutineScope : CoroutineScope
         }
     }
 }
+
+ */

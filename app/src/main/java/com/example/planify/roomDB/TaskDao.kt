@@ -2,6 +2,7 @@ package com.example.planify.roomDB
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.planify.Task
 
 
 @Dao

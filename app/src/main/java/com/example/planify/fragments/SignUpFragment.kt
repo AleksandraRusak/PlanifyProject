@@ -63,7 +63,7 @@ class SignUpFragment : Fragment() {
             if (it.isSuccessful)
                 navControl.navigate(R.id.action_signUpFragment_to_homeFragment)
             else
-                Toast.makeText(context, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Sign Up failed", Toast.LENGTH_SHORT).show()
 
         }
     }

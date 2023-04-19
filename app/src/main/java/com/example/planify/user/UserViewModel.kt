@@ -2,8 +2,9 @@ package com.example.planify.user
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.planify.AppDatabase
+//import com.example.planify.AppDatabase
 import kotlinx.coroutines.launch
+/*
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
     private val userRepository: UserRepository = UserRepository(AppDatabase.getInstance(application), viewModelScope)
@@ -31,5 +32,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         _isLoggedIn.postValue(false)
 
     }
-
 }
+
+ */

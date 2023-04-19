@@ -9,11 +9,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.planify.ListAdapter
 import com.example.planify.databinding.FragmentHomeBinding
-import com.example.planify.roomDB.Task
 import com.example.planify.view_model.TaskViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*

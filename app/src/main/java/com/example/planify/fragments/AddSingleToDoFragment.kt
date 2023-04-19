@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.planify.R
-import com.example.planify.roomDB.Task
+import com.example.planify.Task
 import com.example.planify.databinding.FragmentAddSingleToDoBinding
 import com.example.planify.view_model.TaskViewModel
 
