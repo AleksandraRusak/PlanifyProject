@@ -33,33 +33,39 @@ class SignInFragment : Fragment() {
 
         init(view)
 
+        // Navigate to sign up fragment when "Sign Up" text is clicked
         binding.tvSignUp.setOnClickListener {
             navControl.navigate(R.id.action_signInFragment_to_signUpFragment)
         }
 
+        // Log in the user when "Log In" button is clicked
         binding.btnLogin.setOnClickListener {
             val email = binding.etEmailUser.text.toString().trim()
             val password = binding.etPasswordUser.text.toString().trim()
 
-            if (email.isNotEmpty() && password.isNotEmpty())
+            if (email.isNotEmpty() && password.isNotEmpty()){
 
                 loginUser(email, password)
-            else
+            } else {
                 Toast.makeText(context, "Empty fields are not allowed", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
+
+    // Log in the user with email and password
     private fun loginUser(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
                 Toast.makeText(context, "Login successfully", Toast.LENGTH_SHORT).show()
                 navControl.navigate(R.id.action_signInFragment_to_homeFragment)
             }else {
-                Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Login failed", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    // Initialize navigation controller and Firebase authentication
     private fun init(view: View) {
         navControl = Navigation.findNavController(view)
         auth = FirebaseAuth.getInstance()

@@ -13,12 +13,14 @@ import com.example.planify.Task
 )
 abstract class TaskDatabase: RoomDatabase() {
 
+    // Define the TaskDao
     abstract fun taskDao(): TaskDao
 
     companion object{
         @Volatile
         private var INSTANCE: TaskDatabase? = null
 
+        // Get the TaskDatabase instance
         fun getDatabase(context: Context): TaskDatabase {
             val tempInstance = INSTANCE
             if(tempInstance != null) {

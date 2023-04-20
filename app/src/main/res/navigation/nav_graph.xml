@@ -49,8 +49,11 @@
         <action
             android:id="@+id/action_homeFragment_to_updateSingleToDoFragment"
             app:destination="@id/updateSingleToDoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_splashFragment2"
+            app:destination="@id/splashFragment2" />
     </fragment>
-    <dialog
+    <fragment
         android:id="@+id/addSingleToDoFragment"
         android:name="com.example.planify.fragments.AddSingleToDoFragment"
         android:label="fragment_add_single_to_do"
@@ -58,7 +61,7 @@
         <action
             android:id="@+id/action_addSingleToDoFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
-    </dialog>
+    </fragment>
     <fragment
         android:id="@+id/updateSingleToDoFragment"
         android:name="com.example.planify.fragments.UpdateSingleToDoFragment"

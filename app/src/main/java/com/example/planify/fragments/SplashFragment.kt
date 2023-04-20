@@ -16,8 +16,8 @@ import com.google.firebase.auth.FirebaseAuth
 
 class SplashFragment : Fragment() {
 
-    private var _binding: FragmentSplashBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentSplashBinding
+
 
 
     override fun onCreateView(
@@ -25,16 +25,13 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentSplashBinding.inflate(inflater, container, false)
+        binding = FragmentSplashBinding.inflate(inflater, container, false)
 
-        binding.apply {
-
-            // after 3 seconds, navigate from SplashFragment to Listfragment
+            // after 3 seconds, navigate from SplashFragment to SignUpFragment
             Handler().postDelayed({
                 findNavController().navigate(R.id.action_splashFragment2_to_signUpFragment)
             }, 3000)
 
-        }
         return binding.root
     }
 }

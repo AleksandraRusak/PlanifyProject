@@ -32,12 +32,13 @@ class AddSingleToDoFragment : Fragment() {
         binding.apply {
             taskViewModel = ViewModelProvider(requireActivity())[TaskViewModel::class.java]
 
-
-            binding.todoNextBtn.setOnClickListener {
+            // Insert task into the database when "Next" button is clicked
+            todoNextBtn.setOnClickListener {
                 insertToDB()
             }
 
-            binding.todoClose.setOnClickListener {
+            // Navigate back to the home fragment when "Close" button is clicked
+            todoClose.setOnClickListener {
                 findNavController().navigate(R.id.action_addSingleToDoFragment_to_homeFragment)
             }
 
@@ -47,7 +48,7 @@ class AddSingleToDoFragment : Fragment() {
     }
 
 
-    // insert task to database
+    // Insert task into the database
     private fun insertToDB() {
         val task = binding.todoEt.text.toString()
 
@@ -59,12 +60,12 @@ class AddSingleToDoFragment : Fragment() {
 
             findNavController().navigate(R.id.action_addSingleToDoFragment_to_homeFragment)
         } else {
-            Toast.makeText(requireContext(), "The fields can not be empty!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "The field can not be empty!", Toast.LENGTH_SHORT).show()
         }
 
     }
 
-    // if text input fields aren't empty
+    // Check if the text input field is not empty
     private fun inputCheck(task: String) : Boolean {
         return !(TextUtils.isEmpty(task))
     }

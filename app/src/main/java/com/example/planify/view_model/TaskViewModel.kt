@@ -10,6 +10,7 @@ import com.example.planify.roomDB.TaskDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+// Task ViewModel for managing UI-related data
 class TaskViewModel(application: Application): AndroidViewModel(application) {
 
     val readAllData: LiveData<List<Task>>
@@ -21,24 +22,28 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
         readAllData = repository.readAllData
     }
 
+    // Add a task
     fun addTask(task: Task) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addTask(task)
         }
     }
 
+    // Update a task
     fun updateTask(task: Task) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateTask(task)
         }
     }
 
+    // Delete a task
     fun deleteTask(task: Task) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteTask(task)
         }
     }
 
+    // Delete all tasks
     fun deleteAllTasks() {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteAllTask()

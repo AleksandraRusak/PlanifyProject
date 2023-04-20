@@ -37,10 +37,12 @@ class UpdateSingleToDoFragment : Fragment() {
         binding.apply {
             updateTodoEt.setText(args.currentTask.task)
 
+            // Update the task when "Next" button is clicked
             updateTodoNextBtn.setOnClickListener {
                 updateItem()
             }
 
+            // Navigate back to the home fragment when "Close" button is clicked
             updateTodoClose.setOnClickListener {
                 findNavController().navigate(R.id.action_updateSingleToDoFragment_to_homeFragment)
             }
@@ -48,6 +50,7 @@ class UpdateSingleToDoFragment : Fragment() {
         return binding.root
     }
 
+    // Update the task in the database
     private fun updateItem() {
         val task = binding.updateTodoEt.text.toString()
 
@@ -61,6 +64,7 @@ class UpdateSingleToDoFragment : Fragment() {
         }
     }
 
+    // Check if the text input field is not empty
     private fun inputCheck(task: String) : Boolean {
 
         return !(TextUtils.isEmpty(task))

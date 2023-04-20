@@ -9,26 +9,23 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.planify.ListAdapter
 import com.example.planify.databinding.FragmentHomeBinding
 import com.example.planify.view_model.TaskViewModel
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class HomeFragment : Fragment(), SearchView.OnQueryTextListener{
-
-    private lateinit var auth: FirebaseAuth
-    private lateinit var databaseRef: DatabaseReference
-    private lateinit var navControl: NavController
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var taskViewModel: TaskViewModel
+    private lateinit var adapter: ListAdapter
 
+    private lateinit var navControl: NavController
 
-    // for the searchView
-    //private val adapter: ListAdapter by lazy { ListAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,33 +33,33 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener{
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
         binding.apply {
+            // Setup RecyclerView
+            adapter = ListAdapter()
+            val recyclerView = binding.mainRecyclerView
+            recyclerView.adapter = adapter
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-            // recyclerView
-            //this adapter is for retrieving the recyclerView
-            val adapter = ListAdapter()
-            //val recyclerView = recyclerView
-            //recyclerView.adapter = adapter
-           //recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-            // taskViewModel to read data from database
+            // // Initialize TaskViewModel to read data from database
             taskViewModel = ViewModelProvider(requireActivity())[TaskViewModel::class.java]
             taskViewModel.readAllData.observe(viewLifecycleOwner) { task ->
                 adapter.setData(task)
             }
 
-            // add buttons
-
-            btnAddToDo.setOnClickListener {
-                //findNavController().navigate(R.id.action_homeFragment_to_addSingleToDo)
+            // Add new task button
+            btnAddTask.setOnClickListener {
+                //findNavController().navigate()
             }
 
-            // delete all tasks button
+
+            // Delete all tasks button
             btnDeleteAllToDo.setOnClickListener {
                 deleteAllTasks()
             }
         }
-            return binding.root
+
+        return binding.root
 
     }
 
