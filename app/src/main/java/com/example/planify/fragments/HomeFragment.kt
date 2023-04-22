@@ -12,9 +12,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.planify.ListAdapter
+import com.example.planify.R
 import com.example.planify.databinding.FragmentHomeBinding
 import com.example.planify.view_model.TaskViewModel
-import com.google.firebase.database.*
+
 
 class HomeFragment : Fragment(), SearchView.OnQueryTextListener{
 
@@ -25,6 +26,7 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener{
     private lateinit var adapter: ListAdapter
 
     private lateinit var navControl: NavController
+
 
 
     override fun onCreateView(
@@ -47,20 +49,25 @@ class HomeFragment : Fragment(), SearchView.OnQueryTextListener{
                 adapter.setData(task)
             }
 
-            // Add new task button
-            btnAddTask.setOnClickListener {
-                //findNavController().navigate()
-            }
 
+            btnAddTask.setOnClickListener {
+                navControl.navigate(R.id.action_homeFragment_to_addSingleToDoFragment)
+            }
 
             // Delete all tasks button
             btnDeleteAllToDo.setOnClickListener {
                 deleteAllTasks()
             }
+
         }
 
         return binding.root
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navControl = findNavController()
     }
 
 

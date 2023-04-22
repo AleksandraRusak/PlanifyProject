@@ -9,7 +9,7 @@ import com.example.planify.Task
 interface TaskDao {
 
     // Insert a new task into the database
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addTask(task: Task)
 
     // Update an existing task in the database

@@ -37,13 +37,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btnAddTask"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_marginEnd="15dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/baseline_add_circle_24"
+            android:background="@drawable/baseline_add_circle_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.924"
@@ -52,13 +51,12 @@
             app:layout_constraintVertical_bias="0.943" />
 
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btnDeleteAllToDo"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_marginStart="15dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/baseline_delete_24"
+            android:background="@drawable/baseline_delete_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.143"

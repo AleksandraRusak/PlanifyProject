@@ -16,6 +16,7 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
     val readAllData: LiveData<List<Task>>
     private val repository: TaskRepository
 
+    // Initializing dao, repository and all tasks data
     init {
         val taskDao = TaskDatabase.getDatabase(application).taskDao()
         repository = TaskRepository(taskDao)
@@ -49,5 +50,6 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
             repository.deleteAllTask()
         }
     }
+
 
 }
