@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_design"
             android:layout_width="match_parent"
@@ -27,15 +28,37 @@
             android:id="@+id/tv_tasks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="4dp"
             android:text="Tasks"
             android:textColor="@color/white"
             android:textSize="40sp"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_design" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/btnLogOut"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/baseline_logout_24"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/profile_photo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.086"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.012" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btnAddTask"
@@ -67,7 +90,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mainRecyclerView"
             android:layout_width="409dp"
-            android:layout_height="493dp"
+            android:layout_height="494dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
