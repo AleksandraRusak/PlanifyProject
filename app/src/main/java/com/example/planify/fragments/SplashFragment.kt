@@ -17,9 +17,8 @@ import com.google.firebase.auth.FirebaseAuth
 
 class SplashFragment : Fragment() {
 
+    // declare a private variable for FragmentSplashBinding
     private lateinit var binding: FragmentSplashBinding
-
-
 
     @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(

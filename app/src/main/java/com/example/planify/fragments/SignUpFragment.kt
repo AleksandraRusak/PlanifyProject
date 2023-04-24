@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class SignUpFragment : Fragment() {
 
+    // Declare private variables
     private lateinit var auth: FirebaseAuth
     private lateinit var navControl: NavController
     private lateinit var binding: FragmentSignUpBinding
@@ -32,6 +33,7 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Initialize FirebaseAuth and NavController
         init(view)
 
         // Navigate to sign in fragment when "Sign In" text is clicked
@@ -41,13 +43,16 @@ class SignUpFragment : Fragment() {
 
         // Register the user when "Register" button is clicked
         binding.btnRegister.setOnClickListener {
+            // Get email, password, and confirm password from the input fields
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
             val confirmPassword = binding.etConfirmPassword.text.toString().trim()
 
             if (email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()) {
+                // Check if the password matches the confirm password
                 if (password == confirmPassword) {
 
+                    // Show a message and register the user if the input is valid
                     Toast.makeText(context, "Registered Successfully", Toast.LENGTH_SHORT).show()
                     registerUser(email, password)
 

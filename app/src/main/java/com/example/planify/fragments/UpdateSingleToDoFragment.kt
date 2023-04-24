@@ -66,7 +66,6 @@ class UpdateSingleToDoFragment : Fragment() {
 
     // Check if the text input field is not empty
     private fun inputCheck(task: String) : Boolean {
-
         return !(TextUtils.isEmpty(task))
     }
 

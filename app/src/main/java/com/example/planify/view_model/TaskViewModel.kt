@@ -22,21 +22,18 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
         repository = TaskRepository(taskDao)
         readAllData = repository.readAllData
     }
-
     // Add a task
     fun addTask(task: Task) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.addTask(task)
         }
     }
-
     // Update a task
     fun updateTask(task: Task) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.updateTask(task)
         }
     }
-
     // Delete a task
     fun deleteTask(task: Task) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -50,6 +47,4 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
             repository.deleteAllTask()
         }
     }
-
-
 }

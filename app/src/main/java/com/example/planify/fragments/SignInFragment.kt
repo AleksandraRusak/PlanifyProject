@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 class SignInFragment : Fragment() {
 
+    // Declare private variables
     private lateinit var auth: FirebaseAuth
     private lateinit var navControl: NavController
     private lateinit var binding: FragmentSignInBinding
@@ -31,6 +32,7 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Initialize FirebaseAuth and NavController
         init(view)
 
         // Navigate to sign up fragment when "Sign Up" text is clicked
@@ -38,15 +40,18 @@ class SignInFragment : Fragment() {
             navControl.navigate(R.id.action_signInFragment_to_signUpFragment)
         }
 
-        // Log in the user when "Log In" button is clicked
+        // Log in the user with email and password when "Log In" button is clicked
         binding.btnLogin.setOnClickListener {
+            // Get email and password from the input fields
             val email = binding.etEmailUser.text.toString().trim()
             val password = binding.etPasswordUser.text.toString().trim()
 
+            // Check if email and password are not empty, then log in the user
             if (email.isNotEmpty() && password.isNotEmpty()){
 
                 loginUser(email, password)
             } else {
+                // Show a message if email or password are empty
                 Toast.makeText(context, "Empty fields are not allowed", Toast.LENGTH_SHORT).show()
             }
         }

@@ -41,12 +41,9 @@ class AddSingleToDoFragment : Fragment() {
             todoClose.setOnClickListener {
                 findNavController().navigate(R.id.action_addSingleToDoFragment_to_homeFragment)
             }
-
         }
-
         return binding.root
     }
-
 
     // Insert task into the database
     private fun insertToDB() {
@@ -74,6 +71,4 @@ class AddSingleToDoFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
-
     }

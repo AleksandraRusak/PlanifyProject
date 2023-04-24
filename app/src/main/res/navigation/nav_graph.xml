@@ -50,8 +50,8 @@
             android:id="@+id/action_homeFragment_to_updateSingleToDoFragment"
             app:destination="@id/updateSingleToDoFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_splashFragment2"
-            app:destination="@id/splashFragment2" />
+            android:id="@+id/action_homeFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/addSingleToDoFragment"

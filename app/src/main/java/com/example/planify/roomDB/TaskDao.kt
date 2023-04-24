@@ -7,7 +7,6 @@ import com.example.planify.Task
 // Task Data Access Object (DAO) interface
 @Dao
 interface TaskDao {
-
     // Insert a new task into the database
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addTask(task: Task)
@@ -27,5 +26,4 @@ interface TaskDao {
     // Retrieve all tasks from the database, ordered by ID
     @Query("SELECT * FROM task_table")
     fun readAllData(): LiveData<List<Task>>
-
 }
