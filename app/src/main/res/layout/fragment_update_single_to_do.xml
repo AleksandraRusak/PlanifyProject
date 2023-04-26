@@ -24,7 +24,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="30dp">
+            android:paddingTop="30dp"
+            android:paddingHorizontal="20dp">
 
             <TextView
                 android:id="@+id/textView_update"
@@ -54,7 +55,8 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputUpdateLayout"
-                android:layout_width="280dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 app:counterEnabled="true"

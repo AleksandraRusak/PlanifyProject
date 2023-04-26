@@ -15,6 +15,7 @@ import com.example.planify.view_model.TaskViewModel
 class ListAdapter : RecyclerView.Adapter<ListAdapter.ToDoViewHolder>() {
     // Creating a variable for all notes list
     private var taskList= emptyList<Task>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoViewHolder {
         // inflating a layout file for each task item of recycler view.
         val binding = TodoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

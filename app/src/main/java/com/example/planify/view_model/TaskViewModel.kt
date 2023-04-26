@@ -5,13 +5,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.planify.Task
-import com.example.planify.roomDB.TaskRepository
 import com.example.planify.roomDB.TaskDatabase
-import kotlinx.coroutines.Dispatchers
+import com.example.planify.roomDB.TaskRepository
 import kotlinx.coroutines.launch
 
 // Task ViewModel for managing UI-related data
-class TaskViewModel(application: Application): AndroidViewModel(application) {
+class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
     val readAllData: LiveData<List<Task>>
     private val repository: TaskRepository
@@ -22,28 +21,32 @@ class TaskViewModel(application: Application): AndroidViewModel(application) {
         repository = TaskRepository(taskDao)
         readAllData = repository.readAllData
     }
+
+
     // Add a task
     fun addTask(task: Task) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             repository.addTask(task)
         }
     }
+
     // Update a task
     fun updateTask(task: Task) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             repository.updateTask(task)
         }
     }
+
     // Delete a task
     fun deleteTask(task: Task) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             repository.deleteTask(task)
         }
     }
 
     // Delete all tasks
     fun deleteAllTasks() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             repository.deleteAllTask()
         }
     }

@@ -10,4 +10,6 @@ data class ProfilePhoto(
 data class PhotoUrls(
     val small: String,     // URL of the photo with a small size
     val regular: String    // URL of the photo with a regular size
-)
+) {
+
+}

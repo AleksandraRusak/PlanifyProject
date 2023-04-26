@@ -10,11 +10,12 @@ object RetrofitInstance {
     // Base URL for Unsplash API
     private const val BASE_URL = "https://api.unsplash.com/"
 
+
     // OkHttpClient with an interceptor to add the required authorization header
     private val httpClient = OkHttpClient.Builder()
         .addInterceptor { chain: Interceptor.Chain ->
             val original: Request = chain.request()
-            // Building a new request with the Authorization header
+            //Building a new request with the Authorization header
             val requestBuilder: Request.Builder = original.newBuilder()
                 .header("Authorization",
                     "Client-ID 4o0hlxLcIzUYXuYXB56-4YKH_Go_MVYMQSfs5rggDeE")
@@ -23,6 +24,8 @@ object RetrofitInstance {
             chain.proceed(request)
         }
         .build()
+
+
 
     // Creating a Retrofit instance with the base URL and OkHttpClient
     private val retrofit = Retrofit.Builder()

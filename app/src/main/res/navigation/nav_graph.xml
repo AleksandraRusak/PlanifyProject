@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_homeFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profilePhotoFragment"
+            app:destination="@id/profilePhotoFragment" />
     </fragment>
     <fragment
         android:id="@+id/addSingleToDoFragment"
@@ -73,5 +76,14 @@
         <argument
             android:name="currentTask"
             app:argType="com.example.planify.Task" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilePhotoFragment"
+        android:name="com.example.planify.fragments.ProfilePhotoFragment"
+        android:label="fragment_profile_photo"
+        tools:layout="@layout/fragment_profile_photo" >
+        <action
+            android:id="@+id/action_profilePhotoFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
